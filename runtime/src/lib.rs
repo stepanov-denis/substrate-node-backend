@@ -236,11 +236,6 @@ impl pallet_timestamp::Config for Runtime {
 	type WeightInfo = ();
 }
 
-// parameter_types! {
-//     pub const ExistentialDeposit: u128 = 1000;
-//     pub const MaxLocks: u32 = 50;
-// }
-
 impl pallet_balances::Config for Runtime {
 	type MaxLocks = ConstU32<50>;
 	type MaxReserves = ();
@@ -256,37 +251,37 @@ impl pallet_balances::Config for Runtime {
 }
 
 parameter_types! {
-    // Choose a fee that incentivizes desireable behavior.
-    pub const NickReservationFee: u128 = 100;
-    pub const MinNickLength: u32 = 8;
-    // Maximum bounds on storage are important to secure your chain.
-    pub const MaxNickLength: u32 = 32;
+	// Choose a fee that incentivizes desireable behavior.
+	pub const NickReservationFee: u128 = 100;
+	pub const MinNickLength: u32 = 8;
+	// Maximum bounds on storage are important to secure your chain.
+	pub const MaxNickLength: u32 = 32;
 }
 
 impl pallet_nicks::Config for Runtime {
-    // The Balances pallet implements the ReservableCurrency trait.
-    // `Balances` is defined in `construct_runtime!` macro. See below.
-    // https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1
-    type Currency = Balances;
+	// The Balances pallet implements the ReservableCurrency trait.
+	// `Balances` is defined in `construct_runtime!` macro. See below.
+	// https://paritytech.github.io/substrate/master/pallet_balances/index.html#implementations-1
+	type Currency = Balances;
 
-    // Use the NickReservationFee from the parameter_types block.
-    type ReservationFee = NickReservationFee;
+	// Use the NickReservationFee from the parameter_types block.
+	type ReservationFee = NickReservationFee;
 
-    // No action is taken when deposits are forfeited.
-    type Slashed = ();
+	// No action is taken when deposits are forfeited.
+	type Slashed = ();
 
-    // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
-    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+	// Configure the FRAME System Root origin as the Nick pallet admin.
+	// https://paritytech.github.io/substrate/master/frame_system/enum.RawOrigin.html#variant.Root
+	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
-    // Use the MinNickLength from the parameter_types block.
-    type MinLength = MinNickLength;
+	// Use the MinNickLength from the parameter_types block.
+	type MinLength = MinNickLength;
 
-    // Use the MaxNickLength from the parameter_types block.
-    type MaxLength = MaxNickLength;
+	// Use the MaxNickLength from the parameter_types block.
+	type MaxLength = MaxNickLength;
 
-    // The ubiquitous event type.
-    type Event = Event;
+	// The ubiquitous event type.
+	type Event = Event;
 }
 
 // Define the types required by the Scheduler pallet.
@@ -326,6 +321,7 @@ impl pallet_sudo::Config for Runtime {
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type Event = Event;
+	type MaxBytesInHash = frame_support::traits::ConstU32<64>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
