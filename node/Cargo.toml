@@ -2,12 +2,14 @@
 name = "node-template"
 version = "4.0.0-dev"
 description = "A fresh FRAME-based Substrate node, ready for hacking."
-authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]
-homepage = "https://substrate.io/"
+authors = ["Stepanov Denis <stepanov.d.m@yandex.ru>"]
 edition = "2021"
 license = "Unlicense"
 publish = false
-repository = "https://github.com/substrate-developer-hub/substrate-node-template/"
+repository = "https://github.com/stepanov-denis/substrate-node-frontend/"
+keywords = ["substrate"]
+documentation = "https://docs.rs/stepanov-denis/substrate-node-frontend/"
+readme = "README.md"
 build = "build.rs"
 
 [package.metadata.docs.rs]
